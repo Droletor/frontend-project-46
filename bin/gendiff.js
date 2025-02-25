@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
+import parseFile from '../src/parser.js';
 import { Command } from 'commander';
+
 const program = new Command();
 
 program
@@ -8,10 +10,11 @@ program
   .version('0.0.1')
   .argument('<filepath1>')
   .argument('<filepath2>')
-  .option('-f, --format [type]', 'output format');
+  .option('-f, --format [type]', 'output format')
+  .action((filepath1, filepath2, options) => {
+	const format = options.format;
+    const obj1 = parseFile(filepath1);
+    const obj2 = parseFile(filepath2);
+  });
 
 program.parse();
-
-const options = program.opts();
-const limit = options.first ? 1 : undefined;
-console.log(program.args[0].split(options.separator, limit));
