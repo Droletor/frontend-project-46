@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import parseFile from '../src/parser.js';
+import genDiff from '../src/index.js';
 import { Command } from 'commander';
 
 const program = new Command();
@@ -15,6 +16,7 @@ program
 	const format = options.format;
     const obj1 = parseFile(filepath1);
     const obj2 = parseFile(filepath2);
+	console.log(genDiff(obj1, obj2));
   });
 
 program.parse();
