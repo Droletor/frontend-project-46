@@ -14,3 +14,6 @@
 
 ## Yaml
 [![asciicast](https://asciinema.org/a/z9V1ELWChzBeEeOz6X28WgDVj.svg)](https://asciinema.org/a/z9V1ELWChzBeEeOz6X28WgDVj)
+
+## Stylish output
+[![asciicast](https://asciinema.org/a/p9XMQ4PqBd6exiEGXXU1I5ovL.svg)](https://asciinema.org/a/p9XMQ4PqBd6exiEGXXU1I5ovL)
