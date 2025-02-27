@@ -8,5 +8,9 @@
 
 </div>
 
-## Demo:
+### Demos:
+## Json
 [![asciicast](https://asciinema.org/a/ZbGphof00eEmSSpyy28xwmNVw.svg)](https://asciinema.org/a/ZbGphof00eEmSSpyy28xwmNVw)
+
+## Yaml
+[![asciicast](https://asciinema.org/a/z9V1ELWChzBeEeOz6X28WgDVj.svg)](https://asciinema.org/a/z9V1ELWChzBeEeOz6X28WgDVj)
