@@ -36,3 +36,10 @@ test('Compare deep yaml', () => {
   const result = readFile('deepResult.txt').trim();
   expect(genDiff(path1, path2)).toEqual(result);
 });
+
+test('Plain output', () => {
+  const path1 = getFixturePath('deepFile1.json');
+  const path2 = getFixturePath('deepFile2.json');
+  const result = readFile('plainResult.txt').trim();
+  expect(genDiff(path1, path2, 'plain')).toEqual(result);
+});
