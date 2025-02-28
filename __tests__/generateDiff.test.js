@@ -43,3 +43,10 @@ test('Plain output', () => {
   const result = readFile('plainResult.txt').trim();
   expect(genDiff(path1, path2, 'plain')).toEqual(result);
 });
+
+test('Json output', () => {
+  const path1 = getFixturePath('deepFile1.json');
+  const path2 = getFixturePath('deepFile2.json');
+  const result = readFile('jsonResult.txt').trim();
+  expect(genDiff(path1, path2, 'json')).toEqual(result);
+});

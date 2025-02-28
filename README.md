@@ -20,3 +20,6 @@
 
 ## Plain output
 [![asciicast](https://asciinema.org/a/vN2nLNH95cpw5Z7JBQPRWESpu.svg)](https://asciinema.org/a/vN2nLNH95cpw5Z7JBQPRWESpu)
+
+## Json output
+[![asciicast](https://asciinema.org/a/DsYc6CIMIMismQc4YIU9rvIoY.svg)](https://asciinema.org/a/DsYc6CIMIMismQc4YIU9rvIoY)
