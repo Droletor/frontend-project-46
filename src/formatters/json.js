@@ -1,1 +1,1 @@
-export default (diffTree) => JSON.stringify(diffTree);
+export default (diffTree) => JSON.stringify(diffTree, null, 2);

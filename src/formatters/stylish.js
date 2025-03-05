@@ -1,48 +1,43 @@
 import _ from 'lodash';
 
-const indent = (depth, spaceCount = 4) => {
-  const numberSpecialSymbols = 2;
-  return ' '.repeat(depth * spaceCount - numberSpecialSymbols);
+const replacer = '    ';
+
+const stringify = (data, depth) => {
+  if (!_.isObject(data)) return `${data}`;
+
+  const indent = replacer.repeat(depth);
+  const entries = Object.entries(data);
+  const strings = entries.map(([key, value]) => `${indent}    ${key}: ${stringify(value, depth + 1)}`);
+
+  return `{\n${strings.join('\n')}\n${indent}}`;
 };
 
-const stringify = (data, depth, mapping) => {
-  if (!_.isPlainObject(data)) return String(data);
+const stylish = (data) => {
+  const iter = (obj, depth) => {
+    const indent = replacer.repeat(depth);
+    const result = obj.flatMap((node) => {
+      const {
+        key, oldValue, value, type,
+      } = node;
+      switch (type) {
+        case 'added':
+          return `${indent}  + ${key}: ${stringify(value, depth + 1)}`;
+        case 'deleted':
+          return `${indent}  - ${key}: ${stringify(value, depth + 1)}`;
+        case 'unchanged':
+          return `${indent}    ${key}: ${stringify(value, depth + 1)}`;
+        case 'changed':
+          return `${indent}  - ${key}: ${stringify(oldValue, depth + 1)}\n${indent}  + ${key}: ${stringify(value, depth + 1)}`;
+        case 'nested':
+          return `${indent}    ${key}: ${iter(value, depth + 1)}`;
+        default:
+          throw new Error(`Stylish formatter for: '${type}' node not implemented!`);
+      }
+    });
+    return `{\n${result.join('\n')}\n${indent}}`;
+  };
 
-  const textLine = Object.entries(data)
-    .map(([key, value]) => mapping.unchanged({ key, value }, depth + 1));
-  return `{\n${textLine.join('\n')}\n${indent(depth)}  }`;
+  return iter(data, 0);
 };
 
-const getLeafLine = (key, value, depth, mapping, status) => (
-  `${indent(depth)}${status} ${key}: ${stringify(value, depth, mapping)}`
-);
-
-const getChildrenLine = (children, depth, iter, mapping) => (
-  children.flatMap((node) => mapping[node.type](node, depth + 1, iter))
-);
-
-const mapping = {
-  root: ({ children }, depth, iter) => {
-    const childrenLine = getChildrenLine(children, depth, iter, mapping);
-    return `{\n${childrenLine.join('\n')}\n}`;
-  },
-  nested: ({ key, children }, depth, iter) => {
-    const childrenLine = getChildrenLine(children, depth, iter, mapping);
-    return `${indent(depth)}  ${key}: {\n${childrenLine.join('\n')}\n${indent(depth)}  }`;
-  },
-  added: ({ key, value }, depth) => getLeafLine(key, value, depth, mapping, '+'),
-  removed: ({ key, value }, depth) => getLeafLine(key, value, depth, mapping, '-'),
-  unchanged: ({ key, value }, depth) => getLeafLine(key, value, depth, mapping, ' '),
-  changed: ({ key, newValue, oldValue }, depth) => {
-    const oldData = getLeafLine(key, oldValue, depth, mapping, '-');
-    const newData = getLeafLine(key, newValue, depth, mapping, '+');
-    return [oldData, newData];
-  },
-};
-
-const renderTree = (ast) => {
-  const iter = (node, depth) => mapping[node.type](node, depth, iter);
-  return iter(ast, 0);
-};
-
-export default renderTree;
+export default stylish;

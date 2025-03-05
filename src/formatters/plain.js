@@ -1,27 +1,40 @@
 import _ from 'lodash';
 
-const stringify = (val) => {
-  if (_.isObject(val)) return '[complex value]';
-  if (_.isString(val)) return `'${val}'`;
-  return val;
+const stringify = (data) => {
+  if (_.isObject(data)) return '[complex value]';
+
+  if (typeof data === 'string') return `'${data}'`;
+
+  return data;
 };
 
-const mapping = {
-  root: (node, ancestry, iter) => node.children.flatMap((child) => iter(child)).join('\n'),
-  nested: (node, ancestry, iter) => node.children.flatMap((child) => iter(child, ancestry)).join('\n'),
-  added: (node, ancestry) => `Property '${ancestry}' was added with value: ${stringify(node.value)}`,
-  changed: (node, ancestry) => `Property '${ancestry}' was updated. From ${stringify(node.oldValue)} to ${stringify(node.newValue)}`,
-  removed: (node, ancestry) => `Property '${ancestry}' was removed`,
-  unchanged: () => [],
-};
-
-const renderTree = (diffTree) => {
-  const iter = (node, ancestry = '') => {
-    const newAncestry = ancestry ? [ancestry, node.key].join('.') : node.key;
-    return mapping[node.type](node, newAncestry, iter);
+const plain = (data) => {
+  const iter = (obj, path) => {
+    const values = Object.values(obj);
+    const strings = values.flatMap((node) => {
+      const {
+        key, oldValue, value, type,
+      } = node;
+      const newPath = path === '' ? `${key}` : `${path}.${key}`;
+      switch (type) {
+        case 'added':
+          return `Property '${newPath}' was added with value: ${stringify(value)}`;
+        case 'deleted':
+          return `Property '${newPath}' was removed`;
+        case 'changed':
+          return `Property '${newPath}' was updated. From ${stringify(oldValue)} to ${stringify(value)}`;
+        case 'nested':
+          return iter(value, newPath);
+        case 'unchanged':
+          return [];
+        default:
+          throw new Error(`Plain formatter for: '${type}' node not implemented!`);
+      }
+    });
+    return strings.filter((item) => item !== undefined).join('\n');
   };
 
-  return iter(diffTree);
+  return iter(data, '');
 };
 
-export default renderTree;
+export default plain;

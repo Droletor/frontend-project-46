@@ -19,23 +19,12 @@ describe('output format', () => {
   const plainResult = readFile('plainResult.txt');
   const jsonResult = readFile('jsonResult.txt');
 
-  test('Difference in default format', () => {
-    expect(genDiff(jsonPath1, jsonPath2)).toEqual(stylishResult);
-    expect(genDiff(yamlPath1, yamlPath2)).toEqual(stylishResult);
-  });
-
-  test('Difference in stylish format', () => {
-    expect(genDiff(jsonPath1, jsonPath2, 'stylish')).toEqual(stylishResult);
-    expect(genDiff(yamlPath1, yamlPath2, 'stylish')).toEqual(stylishResult);
-  });
-
-  test('Difference in plain format', () => {
-    expect(genDiff(jsonPath1, jsonPath2, 'plain')).toEqual(plainResult);
-    expect(genDiff(yamlPath1, yamlPath2, 'plain')).toEqual(plainResult);
-  });
-
-  test('Difference in json format', () => {
-    expect(genDiff(jsonPath1, jsonPath2, 'json')).toEqual(jsonResult);
-    expect(genDiff(yamlPath1, yamlPath2, 'json')).toEqual(jsonResult);
+  test.each([
+    ['stylish', stylishResult],
+    ['plain', plainResult],
+    ['json', jsonResult],
+  ])('%s format output', (format, result) => {
+    expect(genDiff(jsonPath1, jsonPath2, format)).toEqual(result);
+    expect(genDiff(yamlPath1, yamlPath2, format)).toEqual(result);
   });
 });
