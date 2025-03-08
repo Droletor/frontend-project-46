@@ -39,16 +39,16 @@ gendiff --help
 
 ## Demos:
 ### Json
-[![asciicast](https://asciinema.org/a/ZbGphof00eEmSSpyy28xwmNVw.svg)](https://asciinema.org/a/ZbGphof00eEmSSpyy28xwmNVw)
+<a href="https://asciinema.org/a/ZbGphof00eEmSSpyy28xwmNVw" target="_blank"><img src="https://asciinema.org/a/ZbGphof00eEmSSpyy28xwmNVw.svg" /></a>
 
 ### Yaml
-[![asciicast](https://asciinema.org/a/z9V1ELWChzBeEeOz6X28WgDVj.svg)](https://asciinema.org/a/z9V1ELWChzBeEeOz6X28WgDVj)
+<a href="https://asciinema.org/a/z9V1ELWChzBeEeOz6X28WgDVj" target="_blank"><img src="https://asciinema.org/a/z9V1ELWChzBeEeOz6X28WgDVj.svg" /></a>
 
 ### Stylish output
-[![asciicast](https://asciinema.org/a/p9XMQ4PqBd6exiEGXXU1I5ovL.svg)](https://asciinema.org/a/p9XMQ4PqBd6exiEGXXU1I5ovL)
+<a href="https://asciinema.org/a/p9XMQ4PqBd6exiEGXXU1I5ovL" target="_blank"><img src="https://asciinema.org/a/p9XMQ4PqBd6exiEGXXU1I5ovL.svg" /></a>
 
 ### Plain output
-[![asciicast](https://asciinema.org/a/vN2nLNH95cpw5Z7JBQPRWESpu.svg)](https://asciinema.org/a/vN2nLNH95cpw5Z7JBQPRWESpu)
+<a href="https://asciinema.org/a/vN2nLNH95cpw5Z7JBQPRWESpu" target="_blank"><img src="https://asciinema.org/a/vN2nLNH95cpw5Z7JBQPRWESpu.svg" /></a>
 
 ### Json output
-[![asciicast](https://asciinema.org/a/DsYc6CIMIMismQc4YIU9rvIoY.svg)](https://asciinema.org/a/DsYc6CIMIMismQc4YIU9rvIoY)
+<a href="https://asciinema.org/a/DsYc6CIMIMismQc4YIU9rvIoY" target="_blank"><img src="https://asciinema.org/a/DsYc6CIMIMismQc4YIU9rvIoY.svg" /></a>

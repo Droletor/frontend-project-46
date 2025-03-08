@@ -18,14 +18,14 @@ const buildDiff = (obj1, obj2) => {
       return { key, value: value1, type: 'unchanged' };
     }
 
-    if (typeof value1 === 'object' && typeof value2 === 'object') {
-      return { key, value: buildDiff(value1, value2), type: 'nested' };
+    if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
+      return { key, children: buildDiff(value1, value2), type: 'nested' };
     }
 
     return {
       key,
       oldValue: value1,
-      value: value2,
+      newValue: value2,
       type: 'changed',
     };
   });

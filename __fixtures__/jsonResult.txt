@@ -1,7 +1,7 @@
 [
   {
     "key": "common",
-    "value": [
+    "children": [
       {
         "key": "follow",
         "value": false,
@@ -20,7 +20,7 @@
       {
         "key": "setting3",
         "oldValue": true,
-        "value": null,
+        "newValue": null,
         "type": "changed"
       },
       {
@@ -37,14 +37,14 @@
       },
       {
         "key": "setting6",
-        "value": [
+        "children": [
           {
             "key": "doge",
-            "value": [
+            "children": [
               {
                 "key": "wow",
                 "oldValue": "",
-                "value": "so much",
+                "newValue": "so much",
                 "type": "changed"
               }
             ],
@@ -68,11 +68,11 @@
   },
   {
     "key": "group1",
-    "value": [
+    "children": [
       {
         "key": "baz",
         "oldValue": "bas",
-        "value": "bars",
+        "newValue": "bars",
         "type": "changed"
       },
       {
@@ -85,7 +85,7 @@
         "oldValue": {
           "key": "value"
         },
-        "value": "str",
+        "newValue": "str",
         "type": "changed"
       }
     ],

@@ -13,7 +13,7 @@ const plain = (data) => {
     const values = Object.values(obj);
     const strings = values.flatMap((node) => {
       const {
-        key, oldValue, value, type,
+        key, oldValue, newValue, value, children, type,
       } = node;
       const newPath = path === '' ? `${key}` : `${path}.${key}`;
       switch (type) {
@@ -22,9 +22,9 @@ const plain = (data) => {
         case 'deleted':
           return `Property '${newPath}' was removed`;
         case 'changed':
-          return `Property '${newPath}' was updated. From ${stringify(oldValue)} to ${stringify(value)}`;
+          return `Property '${newPath}' was updated. From ${stringify(oldValue)} to ${stringify(newValue)}`;
         case 'nested':
-          return iter(value, newPath);
+          return iter(children, newPath);
         case 'unchanged':
           return [];
         default:
